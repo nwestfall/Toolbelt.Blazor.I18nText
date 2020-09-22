@@ -76,7 +76,7 @@ namespace Toolbelt.Blazor.I18nText
 
         private async ValueTask<Dictionary<string, string>> ReadJsonAsTextMapWasmAsync(string jsonUrl)
         {
-            var jsonText = await this.HttpClient.GetStringAsync(jsonUrl);
+            var jsonText = await (await this.HttpClient.GetAsync(jsonUrl)).Content.ReadAsStringAsync();
             return JsonSerializer.Deserialize<Dictionary<string, string>>(jsonText);
         }
 
